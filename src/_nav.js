@@ -60,9 +60,26 @@ export default {
       ],
     },
     {
-      name: 'Settings',
-      url: '/settings',
+      name: 'Manage',
+      url: '/manage',
       icon: 'icon-settings',
+      children: [
+        {
+          name: 'Add-Ons',
+          url: '/manage/add-ons',
+          icon: 'icon-pencil',
+        },
+        {
+          name: 'Credentials',
+          url: '/manage/credentials',
+          icon: 'icon-lock',
+        },
+        {
+          name: 'Users',
+          url: '/manage/users',
+          icon: 'icon-people',
+        }
+      ],
     },
     
   ],

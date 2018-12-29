@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
+import { Card, CardBody, CardHeader, Col, Row, Button, ListGroup, ListGroupItem } from 'reactstrap';
 
 class WelcomeScreen extends Component{
 
@@ -11,35 +12,55 @@ class WelcomeScreen extends Component{
     render(){
         const { values } = this.props;
         return(
-            <Form >
-                <h1 className="ui centered">Enter User Details</h1>
-                <Form.Field>
-                    <label>First Name</label>
-                    <input
-                    placeholder='First Name'
-                    onChange={this.props.handleChange('firstName')}
-                    defaultValue={values.firstName}
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <label>Last Name</label>
-                    <input
-                    placeholder='Last Name'
-                    onChange={this.props.handleChange('lastName')}
-                    defaultValue={values.lastName}
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <label>Email Address</label>
-                    <input
-                    type='email'
-                    placeholder='Email Address'
-                    onChange={this.props.handleChange('email')}
-                    defaultValue={values.email}
-                    />
-                </Form.Field>
-                <Button onClick={this.saveAndContinue}>Save And Continue </Button>
-            </Form>
+            
+            <div className="animated fadeIn">
+            <Row>
+            <Col xs={6} md={4}>
+            <div className="chart-wrapper" align="center">
+                <img src='../../assets/img/cuisine/generator.png' height="350" width="350"/>
+                </div>
+                </Col>
+                <Col xs={12} md={8}>
+                <Card>
+                <CardHeader className="text-white bg-primary">
+        <h2>Welcome to Bundle Generator!</h2>
+  
+          </CardHeader>
+          <CardBody >
+            <div className="chart-wrapper" align="left">
+            <p>Creating a combination of Cloudbreak blueprints and recipes is easy with Cloudbreak Cuisine.</p>
+                    <p>Follow these four simple steps:</p>
+                    <ListGroup>
+                   
+                        <ListGroupItem><strong>1. </strong>Choose a cluster type</ListGroupItem>
+                        <ListGroupItem><strong>2. </strong>Select the services you need</ListGroupItem>
+                        <ListGroupItem><strong>3. </strong>Select custom add-ons for these services</ListGroupItem>
+                        <ListGroupItem><strong>4. </strong>Enter cluster details</ListGroupItem>
+                   
+                    </ListGroup>
+                
+            </div>
+          </CardBody>
+        </Card>
+                    
+ 
+                </Col>
+               
+            </Row>
+            
+            <Row>
+                <Col xs={6} md={4}>
+                </Col>
+                <Col xs={12} md={8}>
+                <div className="chart-wrapper" align="right">
+                <Button size="lg" color="primary" onClick={this.saveAndContinue}>
+                  Get Started  <i className="fa fa-long-arrow-right"></i>
+                </Button>
+                </div>
+                </Col>
+            </Row>
+            </div>
+           
         )
     }
 }

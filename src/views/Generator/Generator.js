@@ -3,6 +3,8 @@ import UserDetails from './UserDetails';
 import PersonalDetails from './PersonalDetails';
 import Confirmation from './Confirmation';
 import Success from './Success';
+import WelcomeScreen from './WelcomeScreen';
+import ClusterType from './ClusterType';
 
 class Generator extends Component {
     state = {
@@ -42,13 +44,13 @@ class Generator extends Component {
         const values = { firstName, lastName, email, age, city, country };
         switch(step) {
         case 1:
-            return <UserDetails 
+            return <WelcomeScreen 
                     nextStep={this.nextStep} 
                     handleChange = {this.handleChange}
                     values={values}
                     />
         case 2:
-            return <PersonalDetails 
+            return <ClusterType 
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
                     handleChange = {this.handleChange}

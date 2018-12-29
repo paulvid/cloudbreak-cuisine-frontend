@@ -30,7 +30,7 @@ class DefaultHeader extends Component {
         <Nav className="ml-auto" navbar>
           <AppHeaderDropdown direction="down">
             <DropdownToggle nav>
-              <img src={'../../assets/img/avatars/1.png'} className="img-avatar" alt="admin@bootstrapmaster.com" /> admin@hortortonwors.com &nbsp; &nbsp;
+              <img src={'../../assets/img/avatars/1.png'} className="img-avatar" alt="admin@bootstrapmaster.com" /> admin@hortonworks.com &nbsp; &nbsp;
             </DropdownToggle>
             <DropdownMenu left style={{ right: 'auto' }}>
               <DropdownItem><i className="fa fa-wrench"></i> Settings</DropdownItem>

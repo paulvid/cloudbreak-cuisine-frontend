@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardGroup, Col, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import Widget02 from './Widget02';
 
 import libraryData from './LibraryData'
