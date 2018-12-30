@@ -13,7 +13,7 @@ class Confirmation extends Component{
     }
 
     render(){
-        const {values: { firstName, lastName, email, age, city, country }} = this.props;
+        const {values: { clusterType, clusterVersion, combinedSwitch, age, city, country }} = this.props;
 
         return(
             <div>
@@ -22,16 +22,16 @@ class Confirmation extends Component{
                 <List>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>First Name: {firstName}</List.Content>
+                        <List.Content>ClusterType: {clusterType}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>Last Name: {lastName}</List.Content>
+                        <List.Content>ClusterVersions: {clusterVersion}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='mail' />
                         <List.Content>
-                            <a href='mailto:jack@semantic-ui.com'>{email}</a>
+                            <a href='mailto:jack@semantic-ui.com'>{combinedSwitch}</a>
                         </List.Content>
                     </List.Item>
                     <List.Item>

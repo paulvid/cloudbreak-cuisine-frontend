@@ -9,15 +9,22 @@ import ClusterType from './ClusterType';
 class Generator extends Component {
     state = {
         step: 1,
-        firstName: '',
-        lastName: '',
-        email: '',
-        age: '',
-        city: '',
-        country: '',
-        clusterName: '',
-        clusterDescription: ''
+        services: '',
+        recipes: '',
+        hdpSwitch: true,
+        hdfSwitch: false,
+        combinedSwitch: false,
+        hdpBorder: 'border-success',
+        hdfBorder: '',
+        combinedBorder: '',
+        hdpHeader: 'text-white bg-success',
+        hdfHeader: '',
+        combinedHeader: '',
+        clusterVersion: '',
+        clusterType: 'HDP'
     }
+
+
 
     nextStep = () => {
         const { step } = this.state
@@ -37,11 +44,18 @@ class Generator extends Component {
         this.setState({ [input] : event.target.value })
     }
 
+    changeClusterVersion = (data) =>  {
+        this.setState({ clusterVersion : data })
+   }
+
+    changeClusterType = (data) =>  {
+         this.setState({ clusterType : data })
+    }
+
     render(){
         const {step} = this.state;
-        const { clusterName, clusterDescription } = this.state;
-        const { firstName, lastName, email, age, city, country } = this.state;
-        const values = { firstName, lastName, email, age, city, country };
+        const { clusterVersion, clusterType, services, recipes } = this.state;
+        const values = { clusterVersion, clusterType, services, recipes };
         switch(step) {
         case 1:
             return <WelcomeScreen 
@@ -53,6 +67,8 @@ class Generator extends Component {
             return <ClusterType 
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
+                    changeClusterType = {this.changeClusterType}
+                    changeClusterVersion = {this.changeClusterVersion}
                     handleChange = {this.handleChange}
                     values={values}
                     />

@@ -1,11 +1,157 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react';
-import { Card, CardBody, CardHeader, Progress, Row, Col, Button } from 'reactstrap';
+import { Card, CardBody, CardHeader, Progress, Row, Col, Button, Form,
+    FormGroup,
+    FormText,
+    FormFeedback,
+    Input,
+    InputGroup,
+    InputGroupAddon,
+    InputGroupText,
+    Label } from 'reactstrap';
 import { AppSwitch } from '@coreui/react'
 import { throws } from 'assert';
 
 class ClusterType extends Component{
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            hdpSwitch: true,
+            hdfSwitch: false,
+            combinedSwitch: false,
+            hdpBorder: 'border-success',
+            hdfBorder: '',
+            combinedBorder: '',
+            hdpHeader: 'text-white bg-success',
+            hdfHeader: '',
+            combinedHeader: '',
+            clusterVersion: '',
+            clusterType: 'HDP',
+            next: false,
+            hdpVersion: '',
+            hdfVersion: '',
+            combinedVersion: '',
+            nextDisabled: true
+        };
+      }
+     changeVersion = (e) => {
+        var nextDisabledFlag = true;
+        if([e.target.id] == "hdfVersion"){
+            if(this.state.hdfSwitch){
+                nextDisabledFlag = false;
+            }
+        } else if([e.target.id] == "hdpVersion"){
+            if(this.state.hdpSwitch){
+                nextDisabledFlag = false;
+            }
+        } else if([e.target.id] == "combinedVersion"){
+            if(this.state.combinedSwitch){
+                nextDisabledFlag = false;
+            }
+        }
+         this.setState({
+            [e.target.id]: e.target.value,
+            nextDisabled: nextDisabledFlag,
+         })
+         
+     }
+    changeSwitch = (e) => {
+        var eader = '';
+        var border = '';
+        var cluster ='';
+        var nextDisabledFlag = true;
+        if (e.target.id == "HDF") {
+            if (this.state.hdfSwitch == false) {
+                border = 'border-success';
+                eader = 'text-white bg-success';
+                cluster = "HDF";
+                if(this.state.hdfVersion != ''){
+                    nextDisabledFlag = false;
+                }
+            }
+            this.setState({
+                hdpSwitch: false,
+                hdfSwitch: !this.state.hdfSwitch,
+                combinedSwitch: false,
+                hdpBorder: '',
+                hdfBorder: border,
+                combinedBorder: '',
+                hdpHeader: '',
+                hdfHeader: eader,
+                combinedHeader: '',
+                clusterType: cluster,
+                nextDisabled: nextDisabledFlag,
+            })
+
+        } else if (e.target.id == "HDP") {
+            if (this.state.hdpSwitch == false) {
+                border = 'border-success';
+                eader = 'text-white bg-success';
+                cluster = "HDP";
+                if(this.state.hdpVersion != ''){
+                    nextDisabledFlag = false;
+                }
+            }
+            this.setState({
+                hdpSwitch: !this.state.hdpSwitch,
+                hdfSwitch: false,
+                combinedSwitch: false,
+                hdpBorder: border,
+                hdfBorder: '',
+                combinedBorder: '',
+                hdpHeader: eader,
+                hdfHeader: '',
+                combinedHeader: '',
+                clusterType: cluster,
+                nextDisabled: nextDisabledFlag,
+            })
+        } else if (e.target.id == "COMBINED") {
+            if (this.state.combinedSwitch == false) {
+                border = 'border-success';
+                eader = 'text-white bg-success';
+                cluster = "COMBINED";
+                if(this.state.combinedVersion != ''){
+                    nextDisabledFlag = false;
+                }
+            }
+            this.setState({
+                hdpSwitch: false,
+                hdfSwitch: false,
+                combinedSwitch: !this.state.combinedSwitch,
+                hdpBorder: '',
+                hdfBorder: '',
+                combinedBorder: border,
+                hdpHeader: '',
+                hdfHeader: '',
+                combinedHeader: eader,
+                clusterType: cluster,
+                nextDisabled: nextDisabledFlag,
+            })
+          
+        }
+    }
+
+    isDisabled() {
+        // if( (this.state.hdpSwitch && this.state.hdpVersion.trim() != "") ||
+        //     (this.state.hdfSwitch && this.state.hdfVersion.trim() != "") ||
+        //     (this.state.combinedSwitch && this.state.combinedVersion.trim() != "") ){
+        if( (this.state.hdpSwitch) ||
+            (this.state.hdfSwitch) ||
+            (this.state.combinedSwitch) ){ 
+            return false;
+        } else {
+            return true;
+        }
+    }
     saveAndContinue = (e) => {
+        if(this.state.clusterType == "HDP"){
+            this.props.changeClusterVersion(this.state.hdpVersion);
+        } else if(this.state.clusterType == "HDF"){
+            this.props.changeClusterVersion(this.state.hdfVersion);
+        } else if(this.state.clusterType == "COMBINED"){
+            this.props.changeClusterVersion(this.state.combinedVersion);
+        }
+        this.props.changeClusterType(this.state.clusterType);
         e.preventDefault();
         this.props.nextStep();
     }
@@ -31,7 +177,7 @@ class ClusterType extends Component{
         </Row>
             <Row>
                 <Col>
-        <Progress  value='25' color="success" text-align="center" size="lg">25%</Progress>
+        <Progress animated value='25' color="dark" text-align="center" size="lg"></Progress>
         </Col>
         </Row>
         <Row>
@@ -43,68 +189,110 @@ class ClusterType extends Component{
 
         <Row>
         <Col>
-        <Card>
-            <CardHeader>
-                HDP
+        <Card className={this.state.hdpBorder}>
+            <CardHeader className={this.state.hdpHeader}>
+                
                 <div className="card-header-actions">
-                  <AppSwitch className={'mx-1'} variant={'pill'} color={'success'}/>
+                  <AppSwitch id="HDP" className={'mx-1'} variant={'pill'} color={'success'} outline={'alt'} checked={this.state.hdpSwitch} onChange={this.changeSwitch.bind(this)} />
                 </div>
             </CardHeader>
-          <CardBody >
-          <div className="chart-wrapper" align="center">
-          <img src='../../assets/img/cuisine/hdp_cluster.png' height="200" width="200"/>
-          </div>
-            <div className="chart-wrapper" align="left">
-           
-            <h3>Hortonworks Data Platform</h3>
-            <p>
-
-<strong>Hortonworks Data Platform (HDP)</strong> helps enterprises gain insights from structured and unstructured data. It is an open source framework for distributed storage and processing of large, multi-source data sets. HDP modernizes your IT infrastructure and keeps your data secure—in the cloud or on-premises—while helping you drive new revenue streams, improve customer experience, and control costs.</p>
-<p>HDP enables agile application deployment, machine learning and deep learning workloads, real-time data warehousing, and security and governance. It is a key component of a modern data architecture for data at rest. </p>
-                
-            </div>
+            <CardBody >
+                <table>
+                    <tr>
+                        <td width="50%">
+                            <img src='../../assets/img/cuisine/hdp_cluster.png' height="200" width="200" />
+                        </td>
+                        <td width="50%" valign="top">
+                            <p>&nbsp;</p>
+                            <FormGroup>
+                                <Label htmlFor="hdpVersion"><h4>Version</h4></Label>
+                                <Input type="select" name="hdpVersion" id="hdpVersion" onChange={this.changeVersion.bind(this)}>
+                                    <option disabled selected value> -- select an version -- </option>
+                                    <option>3.0</option>
+                                    <option>3.1</option>
+                                </Input>
+                            </FormGroup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <h3>Hortonworks Data Platform</h3>
+                            <strong>Hortonworks Data Platform (HDP)</strong> helps enterprises gain insights from structured and unstructured data. It is an open source framework for distributed storage and processing of large, multi-source data sets.
+                        </td>
+                    </tr>
+                </table>
           </CardBody>
         </Card>
         </Col>
         <Col>
-        <Card>
-            <CardHeader>
-                HDF
+        <Card className={this.state.hdfBorder}>
+            <CardHeader className={this.state.hdfHeader}>
+                
                 <div className="card-header-actions">
-                  <AppSwitch  className={'mx-1'} variant={'pill'} color={'success'}/>
+                  <AppSwitch id="HDF" className={'mx-1'} variant={'pill'} outline={'alt'} color={'success'} checked={this.state.hdfSwitch} onChange={this.changeSwitch.bind(this)}/>
                 </div>
             </CardHeader>
-          <CardBody >
-          <div className="chart-wrapper" align="center">
-          <img src='../../assets/img/cuisine/hdf_cluster.png' height="200" width="200"/>
-          </div>
-            <div className="chart-wrapper" align="left">
-            <h3>Hortonworks Data Flow</h3>
-            <p><strong>Hortonworks DataFlow (HDF)</strong> is a scalable, real-time streaming analytics platform that ingests, curates and analyzes data for key insights and immediate actionable intelligence.</p>
-<p>DataFlow addresses the key challenges enterprises face with data-in-motion—real-time stream processing of data at high volume and high scale, data provenance and ingestion from IoT devices, edge applications and streaming sources.</p>
-                
-            </div>
+            <CardBody >
+                <table>
+                    <tr>
+                        <td width="50%">
+                        <img src='../../assets/img/cuisine/hdf_cluster.png' height="200" width="200"/>
+                        </td>
+                        <td width="50%" valign="top">
+                            <p>&nbsp;</p>
+                            <FormGroup>
+                                <Label htmlFor="hdfVersion"><h4>Version</h4></Label>
+                                <Input type="select" name="hdfVersion" id="hdfVersion" onChange={this.changeVersion.bind(this)}>
+                                    <option disabled selected value> -- select an version -- </option>
+                                    <option>3.2</option>
+                                    <option>3.3</option>
+                                </Input>
+                            </FormGroup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <h3>Hortonworks Data Flow</h3>
+                            <strong>Hortonworks DataFlow (HDF)</strong> is a scalable, real-time streaming analytics platform that ingests, curates and analyzes data for key insights and immediate actionable intelligence.
+                        </td>
+                    </tr>
+                </table>
           </CardBody>
         </Card>
         </Col>
         <Col>
-        <Card>
-            <CardHeader>
-                HDF+HDP
+        <Card className={this.state.combinedBorder}>
+            <CardHeader className={this.state.combinedHeader}>
+                
                 <div className="card-header-actions">
-                  <AppSwitch  className={'mx-1'} variant={'pill'} color={'success'}/>
+                  <AppSwitch id="COMBINED" className={'mx-1'} variant={'pill'} color={'success'} outline={'alt'} checked={this.state.combinedSwitch} onChange={this.changeSwitch.bind(this)}/>
                 </div>
             </CardHeader>
-          <CardBody >
-          <div className="chart-wrapper" align="center">
-          <img src='../../assets/img/cuisine/both_cluster.png' height="200" width="200"/>
-          </div>
-            <div className="chart-wrapper" align="left">
-            <h3>Combined Cluster</h3>
-            <p><strong>Talk about going nowhere fast.</strong> I will obey your orders. I will serve this ship as First Officer. And in an attack against the Enterprise, I will die with this crew. But I will not break my oath of loyalty to Starfleet. Travel time to the nearest starbase? Sorry, Data. The Federation's gone; the Borg is everywhere! 
-            </p><p>Some days you get the bear, and some days the bear gets you. In all trust, there is the possibility for betrayal. A surprise party? Mr. Worf, I hate surprise parties. I would *never* do that to you. The unexpected is our normal routine. </p>
-                
-            </div>
+            <CardBody >
+                <table>
+                    <tr>
+                        <td width="50%">
+                            <img src='../../assets/img/cuisine/both_cluster.png' height="200" width="200"/>
+                        </td>
+                        <td width="50%" valign="top">
+                            <p>&nbsp;</p>
+                            <FormGroup>
+                                <Label htmlFor="combinedVersion"><h4>Version</h4></Label>
+                                <Input type="select" name="combinedVersion" id="combinedVersion" onChange={this.changeVersion.bind(this)}>
+                                    <option disabled selected value> -- select an version -- </option>
+                                    <option>HDP 3.0 | HDF 3.2</option>
+                                    <option>HDP 3.1 | HDF 3.3</option>
+                                </Input>
+                            </FormGroup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <h3>Combined Cluster</h3>
+                            <strong>Combined HDP + HDF clusters</strong> allow you to leverage the best out of Hortonworks platforms. Manage all your services in one central place and build Edge to AI applications.
+                        </td>
+                    </tr>
+                </table>
           </CardBody>
         </Card>
         </Col>
@@ -119,7 +307,7 @@ class ClusterType extends Component{
                 </Col>
                 <Col>
                 <div className="chart-wrapper" align="right">
-                <Button size="lg" color="primary" onClick={this.saveAndContinue}>
+                <Button id={this.state.clusterType} size="lg" color="primary" onClick={this.saveAndContinue} disabled={this.state.nextDisabled}>
                   Next  <i className="fa fa-long-arrow-right"></i>
                 </Button>
                 </div>
