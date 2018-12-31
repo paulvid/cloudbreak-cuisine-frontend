@@ -16,21 +16,21 @@ class ClusterType extends Component{
         super(props);
     
         this.state = {
-            hdpSwitch: true,
+            hdpSwitch: false,
             hdfSwitch: false,
             combinedSwitch: false,
-            hdpBorder: 'border-success',
+            hdpBorder: '',
             hdfBorder: '',
             combinedBorder: '',
-            hdpHeader: 'text-white bg-success',
-            hdfHeader: '',
-            combinedHeader: '',
+            hdpHeader: 'bg-white',
+            hdfHeader: 'bg-white',
+            combinedHeader: 'bg-white',
             clusterVersion: '',
             clusterType: 'HDP',
             next: false,
-            hdpVersion: '',
-            hdfVersion: '',
-            combinedVersion: '',
+            hdpVersion: '3.0',
+            hdfVersion: '3.2',
+            combinedVersion: 'HDP 3.0 | HDF 3.2',
             nextDisabled: true
         };
       }
@@ -76,9 +76,9 @@ class ClusterType extends Component{
                 hdpBorder: '',
                 hdfBorder: border,
                 combinedBorder: '',
-                hdpHeader: '',
+                hdpHeader: 'bg-white',
                 hdfHeader: eader,
-                combinedHeader: '',
+                combinedHeader: 'bg-white',
                 clusterType: cluster,
                 nextDisabled: nextDisabledFlag,
             })
@@ -100,8 +100,8 @@ class ClusterType extends Component{
                 hdfBorder: '',
                 combinedBorder: '',
                 hdpHeader: eader,
-                hdfHeader: '',
-                combinedHeader: '',
+                hdfHeader: 'bg-white',
+                combinedHeader: 'bg-white',
                 clusterType: cluster,
                 nextDisabled: nextDisabledFlag,
             })
@@ -121,8 +121,8 @@ class ClusterType extends Component{
                 hdpBorder: '',
                 hdfBorder: '',
                 combinedBorder: border,
-                hdpHeader: '',
-                hdfHeader: '',
+                hdpHeader: 'bg-white',
+                hdfHeader: 'bg-white',
                 combinedHeader: eader,
                 clusterType: cluster,
                 nextDisabled: nextDisabledFlag,
@@ -146,10 +146,13 @@ class ClusterType extends Component{
     saveAndContinue = (e) => {
         if(this.state.clusterType == "HDP"){
             this.props.changeClusterVersion(this.state.hdpVersion);
+            this.props.changeClusterId(1);
         } else if(this.state.clusterType == "HDF"){
             this.props.changeClusterVersion(this.state.hdfVersion);
+            this.props.changeClusterId(2);
         } else if(this.state.clusterType == "COMBINED"){
             this.props.changeClusterVersion(this.state.combinedVersion);
+            this.props.changeClusterId(3);
         }
         this.props.changeClusterType(this.state.clusterType);
         e.preventDefault();
@@ -207,7 +210,6 @@ class ClusterType extends Component{
                             <FormGroup>
                                 <Label htmlFor="hdpVersion"><h4>Version</h4></Label>
                                 <Input type="select" name="hdpVersion" id="hdpVersion" onChange={this.changeVersion.bind(this)}>
-                                    <option disabled selected value> -- select an version -- </option>
                                     <option>3.0</option>
                                     <option>3.1</option>
                                 </Input>
@@ -243,7 +245,6 @@ class ClusterType extends Component{
                             <FormGroup>
                                 <Label htmlFor="hdfVersion"><h4>Version</h4></Label>
                                 <Input type="select" name="hdfVersion" id="hdfVersion" onChange={this.changeVersion.bind(this)}>
-                                    <option disabled selected value> -- select an version -- </option>
                                     <option>3.2</option>
                                     <option>3.3</option>
                                 </Input>
@@ -279,7 +280,6 @@ class ClusterType extends Component{
                             <FormGroup>
                                 <Label htmlFor="combinedVersion"><h4>Version</h4></Label>
                                 <Input type="select" name="combinedVersion" id="combinedVersion" onChange={this.changeVersion.bind(this)}>
-                                    <option disabled selected value> -- select an version -- </option>
                                     <option>HDP 3.0 | HDF 3.2</option>
                                     <option>HDP 3.1 | HDF 3.3</option>
                                 </Input>

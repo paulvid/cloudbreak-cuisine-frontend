@@ -5,6 +5,7 @@ import Confirmation from './Confirmation';
 import Success from './Success';
 import WelcomeScreen from './WelcomeScreen';
 import ClusterType from './ClusterType';
+import Services from './Services';
 
 class Generator extends Component {
     state = {
@@ -21,7 +22,8 @@ class Generator extends Component {
         hdfHeader: '',
         combinedHeader: '',
         clusterVersion: '',
-        clusterType: 'HDP'
+        clusterType: '',
+        clusterId: ''
     }
 
 
@@ -48,14 +50,18 @@ class Generator extends Component {
         this.setState({ clusterVersion : data })
    }
 
+   changeClusterId = (data) =>  {
+    this.setState({ clusterId : data })
+}
+
     changeClusterType = (data) =>  {
          this.setState({ clusterType : data })
     }
 
     render(){
         const {step} = this.state;
-        const { clusterVersion, clusterType, services, recipes } = this.state;
-        const values = { clusterVersion, clusterType, services, recipes };
+        const { clusterVersion, clusterType, clusterId, services, recipes } = this.state;
+        const values = { clusterVersion, clusterType, clusterId, services, recipes };
         switch(step) {
         case 1:
             return <WelcomeScreen 
@@ -69,11 +75,12 @@ class Generator extends Component {
                     prevStep={this.prevStep}
                     changeClusterType = {this.changeClusterType}
                     changeClusterVersion = {this.changeClusterVersion}
+                    changeClusterId = {this.changeClusterId}
                     handleChange = {this.handleChange}
                     values={values}
                     />
         case 3:
-            return <Confirmation 
+            return <Services 
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
                     values={values}
