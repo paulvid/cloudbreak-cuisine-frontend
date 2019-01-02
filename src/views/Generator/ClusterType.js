@@ -132,9 +132,6 @@ class ClusterType extends Component{
     }
 
     isDisabled() {
-        // if( (this.state.hdpSwitch && this.state.hdpVersion.trim() != "") ||
-        //     (this.state.hdfSwitch && this.state.hdfVersion.trim() != "") ||
-        //     (this.state.combinedSwitch && this.state.combinedVersion.trim() != "") ){
         if( (this.state.hdpSwitch) ||
             (this.state.hdfSwitch) ||
             (this.state.combinedSwitch) ){ 

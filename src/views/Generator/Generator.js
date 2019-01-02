@@ -54,6 +54,9 @@ class Generator extends Component {
     this.setState({ clusterId : data })
 }
 
+setServiceList = (data) =>  {
+    this.setState({ services : data })
+}
     changeClusterType = (data) =>  {
          this.setState({ clusterType : data })
     }
@@ -81,12 +84,13 @@ class Generator extends Component {
                     />
         case 3:
             return <Services 
+                    setServiceList={this.setServiceList}
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
                     values={values}
                     />
         case 4:
-            return <Success />
+            return <Confirmation values={values}/>
         }
     }
 }
