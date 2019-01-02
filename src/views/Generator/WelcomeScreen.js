@@ -29,13 +29,14 @@ class WelcomeScreen extends Component{
           <CardBody >
             <div className="chart-wrapper" align="left">
             <p>Creating a combination of Cloudbreak blueprints and recipes is easy with Cloudbreak Cuisine.</p>
-                    <p>Follow these four simple steps:</p>
+                    <p>Follow these five simple steps:</p>
                     <ListGroup>
                    
                         <ListGroupItem><strong>1. </strong>Choose a cluster type</ListGroupItem>
-                        <ListGroupItem><strong>2. </strong>Select the services you need</ListGroupItem>
-                        <ListGroupItem><strong>3. </strong>Select custom add-ons for these services</ListGroupItem>
-                        <ListGroupItem><strong>4. </strong>Enter cluster details</ListGroupItem>
+                        <ListGroupItem><strong>2. </strong>Select cluster services</ListGroupItem>
+                        <ListGroupItem><strong>3. </strong>Select add-ons for these services</ListGroupItem>
+                        <ListGroupItem><strong>4. </strong>Select Data Plane appications</ListGroupItem>
+                        <ListGroupItem><strong>5. </strong>Enter cluster details</ListGroupItem>
                    
                     </ListGroup>
                 

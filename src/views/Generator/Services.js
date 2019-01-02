@@ -29,14 +29,22 @@ class Services extends Component{
     saveAndContinue = (e) => {
         const {values: { clusterType, clusterVersion, clusterId }} = this.props;
      
+        var services= [];
+
+        // Mandatory Services
+        const mandatoryServiceList = servicesData.filter((service) => ((service.cluster_id == clusterId) && (service.mandatory == 1))); 
+        mandatoryServiceList.map((service) => {
+            services.push(JSON.parse(JSON.stringify({id: service.id, name: service.description, img: service.img}))); 
+        })
+
+        // Selected Services
         const serviceList = servicesData.filter((service) => ((service.cluster_id == clusterId) && (service.display == 1))); 
-        var services= '{';
         serviceList.map((service) => {
             if(this.state[service.id]){
-                services = services + service.id + ": '" + service.description + ", "; 
+                services.push(JSON.parse(JSON.stringify({id: service.id, name: service.description, img: service.img})));  
             }
         })
-        services = services + '}';
+
         this.props.setServiceList(services);
         e.preventDefault();
         this.props.nextStep();
@@ -113,7 +121,7 @@ class Services extends Component{
                 </Row>
                 <Row>
                     <Col>
-                        <Progress animated value='50' color="dark" text-align="center" size="lg"></Progress>
+                        <Progress animated value='40' color="dark" text-align="center" size="lg"></Progress>
                     </Col>
                 </Row>
                 <Row>

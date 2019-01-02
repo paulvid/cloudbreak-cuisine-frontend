@@ -6,12 +6,13 @@ import Success from './Success';
 import WelcomeScreen from './WelcomeScreen';
 import ClusterType from './ClusterType';
 import Services from './Services';
+import Recipes from './Recipes';
 
 class Generator extends Component {
     state = {
         step: 1,
-        services: '',
-        recipes: '',
+        services: [],
+        recipes: [],
         hdpSwitch: true,
         hdfSwitch: false,
         combinedSwitch: false,
@@ -57,6 +58,9 @@ class Generator extends Component {
 setServiceList = (data) =>  {
     this.setState({ services : data })
 }
+setRecipeList = (data) =>  {
+    this.setState({ recipes : data })
+}
     changeClusterType = (data) =>  {
          this.setState({ clusterType : data })
     }
@@ -89,8 +93,20 @@ setServiceList = (data) =>  {
                     prevStep={this.prevStep}
                     values={values}
                     />
+    
         case 4:
-            return <Confirmation values={values}/>
+            return <Recipes 
+                    setRecipeList={this.setRecipeList}
+                    nextStep={this.nextStep}
+                    prevStep={this.prevStep}
+                    values={values}
+                    />
+        case 5:
+            return <Confirmation  
+                    nextStep={this.nextStep}
+                    prevStep={this.prevStep}
+                    values={values}
+                    />
         }
     }
 }

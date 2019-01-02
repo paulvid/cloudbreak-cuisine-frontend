@@ -177,7 +177,7 @@ class ClusterType extends Component{
         </Row>
             <Row>
                 <Col>
-        <Progress animated value='25' color="dark" text-align="center" size="lg"></Progress>
+        <Progress animated value='20' color="dark" text-align="center" size="lg"></Progress>
         </Col>
         </Row>
         <Row>

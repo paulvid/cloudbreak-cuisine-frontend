@@ -13,7 +13,7 @@ class Confirmation extends Component{
     }
 
     render(){
-        const {values: { clusterType, clusterVersion, clusterId, services, city, country }} = this.props;
+        const {values: { clusterType, clusterVersion, clusterId, services, recipes }} = this.props;
 
         return(
             <div>
@@ -34,7 +34,11 @@ class Confirmation extends Component{
                     </List.Item>
                     <List.Item>
                         <List.Icon name='marker' />
-                        <List.Content>services: {services}</List.Content>
+                        <List.Content>services: {JSON.stringify(services)}</List.Content>
+                    </List.Item>
+                    <List.Item>
+                        <List.Icon name='marker' />
+                        <List.Content>recipes: {JSON.stringify(recipes)}</List.Content>
                     </List.Item>
                 </List>
 
