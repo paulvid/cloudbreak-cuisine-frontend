@@ -64,11 +64,7 @@ export default {
       url: '/manage',
       icon: 'icon-settings',
       children: [
-        {
-          name: 'Add-Ons',
-          url: '/manage/add-ons',
-          icon: 'icon-pencil',
-        },
+        
         {
           name: 'Credentials',
           url: '/manage/credentials',
