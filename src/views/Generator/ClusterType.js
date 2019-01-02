@@ -167,7 +167,7 @@ class ClusterType extends Component{
             <div className="animated fadeIn">
                     <Row>
                 <Col>
-        <h1>Step 1: Choose a cluster type</h1>
+        <h1>Step 1: Choose a Cluster Type</h1>
         </Col>
         </Row>
         <Row>

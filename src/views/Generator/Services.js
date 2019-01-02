@@ -34,14 +34,14 @@ class Services extends Component{
         // Mandatory Services
         const mandatoryServiceList = servicesData.filter((service) => ((service.cluster_id == clusterId) && (service.mandatory == 1))); 
         mandatoryServiceList.map((service) => {
-            services.push(JSON.parse(JSON.stringify({id: service.id, name: service.description, img: service.img}))); 
+            services.push(JSON.parse(JSON.stringify({id: service.id, name: service.description, img: service.img, display: service.display}))); 
         })
 
         // Selected Services
         const serviceList = servicesData.filter((service) => ((service.cluster_id == clusterId) && (service.display == 1))); 
         serviceList.map((service) => {
             if(this.state[service.id]){
-                services.push(JSON.parse(JSON.stringify({id: service.id, name: service.description, img: service.img})));  
+                services.push(JSON.parse(JSON.stringify({id: service.id, name: service.description, img: service.img, display: service.display})));  
             }
         })
 

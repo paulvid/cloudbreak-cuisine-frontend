@@ -52,7 +52,7 @@ class Recipes extends Component{
         serviceList.map((service) => {
             const mandatoryRecipes = recipesData.filter((recipe) => ((recipe.serviceId == service.id) && (recipe.mandatory == 1)))
             mandatoryRecipes.map((recipe) => {
-                recipes.push(JSON.parse(JSON.stringify({id: recipe.id, name: recipe.recipeDescription, type: recipe.recipe_type}))); 
+                recipes.push(JSON.parse(JSON.stringify({id: recipe.id, name: recipe.recipeDescription, type: recipe.recipe_type, addon_type: recipe.addon_type, display: recipes.display}))); 
             })
         });
                 
@@ -62,7 +62,7 @@ class Recipes extends Component{
             const otherRecipes = recipesData.filter((recipe) => ((recipe.serviceId == service.id) && (recipe.mandatory == 0)))
             otherRecipes.map((recipe) => {
                 if(this.state[recipe.id]){
-                    recipes.push(JSON.parse(JSON.stringify({id: recipe.id, name: recipe.recipeDescription, type: recipe.recipe_type}))); 
+                    recipes.push(JSON.parse(JSON.stringify({id: recipe.id, name: recipe.recipeDescription, type: recipe.recipe_type, addon_type: recipe.addon_type, display: recipes.display}))); 
                 }
             })
         });

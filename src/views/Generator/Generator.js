@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import UserDetails from './UserDetails';
-import PersonalDetails from './PersonalDetails';
 import Confirmation from './Confirmation';
 import Success from './Success';
 import WelcomeScreen from './WelcomeScreen';
 import ClusterType from './ClusterType';
 import Services from './Services';
 import Recipes from './Recipes';
+import DataPlaneApplications from './DataPlaneApplications';
 
 class Generator extends Component {
     state = {
         step: 1,
         services: [],
         recipes: [],
+        dataPlaneApplications: [],
         hdpSwitch: true,
         hdfSwitch: false,
         combinedSwitch: false,
@@ -58,6 +58,10 @@ class Generator extends Component {
 setServiceList = (data) =>  {
     this.setState({ services : data })
 }
+
+setDataPlaneApplicationList = (data) =>  {
+    this.setState({ dataPlaneApplications : data })
+}
 setRecipeList = (data) =>  {
     this.setState({ recipes : data })
 }
@@ -67,8 +71,8 @@ setRecipeList = (data) =>  {
 
     render(){
         const {step} = this.state;
-        const { clusterVersion, clusterType, clusterId, services, recipes } = this.state;
-        const values = { clusterVersion, clusterType, clusterId, services, recipes };
+        const { clusterVersion, clusterType, clusterId, services, recipes, dataPlaneApplications } = this.state;
+        const values = { clusterVersion, clusterType, clusterId, services, recipes, dataPlaneApplications };
         switch(step) {
         case 1:
             return <WelcomeScreen 
@@ -102,6 +106,14 @@ setRecipeList = (data) =>  {
                     values={values}
                     />
         case 5:
+            return <DataPlaneApplications  
+                    setDataPlaneApplicationList={this.setDataPlaneApplicationList}
+                    nextStep={this.nextStep}
+                    prevStep={this.prevStep}
+                    values={values}
+                    />
+
+        case 6:
             return <Confirmation  
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
