@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardHeader, Progress, Row, Col, Button,
-
     Form,
     FormGroup,
-
     Input,
     InputGroup,
     InputGroupAddon,
