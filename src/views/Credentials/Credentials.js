@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Button } from 'reactstrap';
 
-import usersData from './UsersData'
+import credentialsData from './CredentialsData'
 
-function UserRow(props) {
-  const user = props.user
-  const userLink = `/users/${user.id}`
+function CredentialRow(props) {
+  const credential = props.credential
+  const credentialLink = `/credentials/${credential.id}`
 
   const getBadge = (status) => {
     return status === 'Active' ? 'success' :
@@ -17,17 +17,17 @@ function UserRow(props) {
   }
 
   return (
-    <tr key={user.id.toString()}>
-      <td>{user.id}</td>
-      <td>{user.name}</td>
-      <td>{user.registered}</td>
-      <td>{user.role}</td>
-      <td><Badge color={getBadge(user.status)}>{user.status}</Badge></td>
-      <td><Link to={userLink}><Button size="sm" color="primary">
+    <tr key={credential.id.toString()}>
+      <td>{credential.id}</td>
+      <td>{credential.name}</td>
+      <td>{credential.registered}</td>
+      <td><img src={credential.img } height="50px"/></td>
+      <td><Badge color={getBadge(credential.status)}>{credential.status}</Badge></td>
+      <td><Link to={credentialLink}><Button size="sm" color="primary">
                                         <i className="icon-eyeglass"></i>&nbsp;View
                                     </Button></Link>
                                     &nbsp;
-                                    <Link to={userLink}><Button size="sm" color="warning">
+                                    <Link to={credentialLink}><Button size="sm" color="warning">
                                         <i className="icon-note"></i>&nbsp;Edit
                                     </Button></Link>
                                     &nbsp;
@@ -38,17 +38,17 @@ function UserRow(props) {
   )
 }
 
-class Users extends Component {
+class Credentials extends Component {
 
   render() {
 
-    const userList = usersData.filter((user) => user.id )
+    const credentialList = credentialsData.filter((credential) => credential.id )
 
     return (
       <div className="animated fadeIn">
       <Row>
                     <Col>
-                        <h1>Cuisine Users</h1>
+                        <h1>Cuisine credentials</h1>
                     </Col>
                 </Row>
                 <Row>
@@ -73,8 +73,8 @@ class Users extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {userList.map((user, index) =>
-                      <UserRow key={index} user={user}/>
+                    {credentialList.map((credential, index) =>
+                      <CredentialRow key={index} credential={credential}/>
                     )}
                   </tbody>
                 </Table>
@@ -87,4 +87,4 @@ class Users extends Component {
   }
 }
 
-export default Users;
+export default Credentials;

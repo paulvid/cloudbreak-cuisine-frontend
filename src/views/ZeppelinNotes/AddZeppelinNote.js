@@ -15,7 +15,7 @@ import recipesData from './RecipesData'
 import servicesData from './ServicesData'
 import servicesListData from './ServicesListData'
 
-class AddRecipe extends Component{
+class AddZeppelinNote extends Component{
     constructor(props) {
         super(props);
     
@@ -49,7 +49,7 @@ class AddRecipe extends Component{
             <Input type="text" id="recipeURL" name="recipeURL" placeholder="Enter URL"/>
             </TabPane>
             <TabPane tabId="3">
-            <Input type="textarea" id="recipeCode" name="recipeCode" placeholder="// Enter recipe code"/>
+            <Input type="textarea" id="recipeCode" name="recipeCode" placeholder="// Enter Zeppelin Note"/>
             </TabPane>
           </>
         );
@@ -71,28 +71,28 @@ class AddRecipe extends Component{
                 <Col>
                 <Card className="border-success">
                         <CardHeader className="text-white bg-success">
-                            <h2>Add Recipe</h2>
+                            <h2>Add Zeppelin Note</h2>
                         </CardHeader>
                         <CardBody>
                         <Form>
                   <FormGroup row>
                     
                     <Col md="3">
-                      <Label htmlFor="name">Recipe Name</Label>
+                      <Label htmlFor="name">Zeppelin Note Name</Label>
                       </Col>
                       <Col xs="12" md="9">
                       <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText><i className="fa fa-folder"></i></InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" id="recipeName" name="recipeName" placeholder="Enter recipe name" autoComplete="name"/>
+                      <Input type="text" id="recipeName" name="recipeName" placeholder="Enter Zeppelin Note name" autoComplete="name"/>
                     </InputGroup>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
                     
                     <Col md="3">
-                      <Label htmlFor="description">Recipe Description</Label>
+                      <Label htmlFor="description">Zeppelin Note Description</Label>
                       </Col>
                       <Col xs="12" md="9">
                       <InputGroup>
@@ -100,44 +100,12 @@ class AddRecipe extends Component{
                         <InputGroupText><i className="fa fa-align-justify"></i></InputGroupText>
                       </InputGroupAddon>
 
-                      <Input type="textarea" id="recipeDescription" name="recipeDescription" placeholder="Enter recipe description"/>
+                      <Input type="textarea" id="recipeDescription" name="recipeDescription" placeholder="Enter Zeppelin Note description"/>
                     </InputGroup>
                     </Col>
                   </FormGroup>
 
-                  <FormGroup row>
-                    
-                    <Col md="3">
-                      <Label htmlFor="name">Recipe Type</Label>
-                      </Col>
-                      <Col xs="12" md="9">
-                      <InputGroup>
-                      <Input type="select" name="recipeType" id="recipeType">
-                                    <option>Pre Ambari Start</option>
-                                    <option>Post Ambari Start</option>
-                                    <option>Post Cluster Install</option>
-                                    <option>Pre Termination</option>
-                                </Input>
-                      </InputGroup>
-                    </Col>
-                  </FormGroup>
-
-
-                  <FormGroup row>
-                    
-                    <Col md="3">
-                      <Label htmlFor="name">Associated Service</Label>
-                      </Col>
-                      <Col xs="12" md="9">
-                      <InputGroup>
-                      <Input type="select" name="service" id="service">
-                      {serviceList.map((service) =>
-                        <option>{service.name}</option>
-                            )}
-                                </Input>
-                      </InputGroup>
-                    </Col>
-                  </FormGroup>
+                 
 
                   <FormGroup row>
                     
@@ -148,7 +116,6 @@ class AddRecipe extends Component{
                       <InputGroup>
                       <Input type="select" name="clusterType" id="clusterType">
                                     <option>HDP</option>
-                                    <option>HDF</option>
                                     <option>HDP + HDF</option>
                                 </Input>
                       </InputGroup>
@@ -159,7 +126,7 @@ class AddRecipe extends Component{
 
                   <FormGroup row>
                     <Col md="3">
-                      <Label htmlFor="content">Recipe Content</Label>
+                      <Label htmlFor="content">Zeppelin Note</Label>
                       </Col>
                       <Col xs="12" md="9">
                       <Nav tabs>
@@ -205,7 +172,7 @@ class AddRecipe extends Component{
                                         <i className="fa fa-save"></i>&nbsp;Save
                                     </Button>
                                     &nbsp;
-                                   <Button size="lg" color="danger" href ="#/recipes">
+                                   <Button size="lg" color="danger" href ="#/zeppelinnotes">
                                         <i className="fa fa-ban" ></i>&nbsp;Cancel
                                     </Button>
                       
@@ -229,4 +196,4 @@ class AddRecipe extends Component{
     }
 }
 
-export default AddRecipe;
+export default AddZeppelinNote;

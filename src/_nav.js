@@ -43,17 +43,17 @@ export default {
         },
         {
           name: 'NiFi Templates',
-          url: '/nifi-templates',
+          url: '/nifitemplates',
           icon: 'icon-note',
         },
         {
           name: 'Zeppelin Notes',
-          url: '/zepellin-notes',
+          url: '/zeppelinnotes',
           icon: 'icon-notebook',
         },
         {
           name: 'SQL Scripts',
-          url: '/sql-scripts',
+          url: '/sqlscripts',
           icon: 'icon-puzzle',
         },
       ],
