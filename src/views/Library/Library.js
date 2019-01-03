@@ -24,6 +24,10 @@ class Library extends Component {
     const libraryItemList = libraryData.filter((libraryItem) => libraryItem.id)
     return (
       <div className="animated fadeIn">
+      <h1>Bundle Library</h1>
+        <Row>
+          &nbsp;
+        </Row>
         <Row>
             {libraryItemList.map((libraryItem, index) =>
                       <LibraryItemCol key={index} libraryItem={libraryItem}/>

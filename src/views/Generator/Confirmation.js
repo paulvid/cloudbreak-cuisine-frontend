@@ -140,7 +140,7 @@ class Confirmation extends Component{
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText><i className="fa fa-file-image-o"></i></InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" id="clusterImg" name="clusterImg" placeholder="Cluster Image (enter URL or upload via Browse Button)"/>
+                      <Input type="text" id="bundleImg" name="bundleImg" placeholder="Bundle Image (enter URL or upload via Browse Button)"/>
                     
                     <InputGroupAddon addonType="append">
                         <Button >Browse</Button>

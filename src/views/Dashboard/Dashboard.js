@@ -128,6 +128,10 @@ class Dashboard extends Component {
 
     return (
       <div className="animated fadeIn">
+        <h1>Deployed Bundles</h1>
+        <Row>
+          &nbsp;
+        </Row>
         <Row>
 
             {dashboardItemList.map((dashboardItem, index) =>

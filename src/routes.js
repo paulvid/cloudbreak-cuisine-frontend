@@ -9,12 +9,16 @@ const Generator = React.lazy(() => import('./views/Generator/Generator'));
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
 const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
+const Recipes = React.lazy(() => import('./views/Recipes/Recipes'));
+const AddRecipe = React.lazy(() => import('./views/Recipes/AddRecipe'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/generator', name: 'Generator', component: Generator },
+  { path: '/recipes', exact: true,  name: 'Recipes', component: Recipes },
+  { path: '/addrecipe', exact: true,  name: 'Add Recipe', component: AddRecipe },
    { path: '/users', exact: true,  name: 'Users', component: Users },
    { path: '/users/:id', exact: true, name: 'User Details', component: User },
 

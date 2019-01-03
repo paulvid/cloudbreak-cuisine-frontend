@@ -34,45 +34,43 @@ export default {
     },
     {
       name: 'Custom Add-Ons',
-      url: '/extras',
       icon: 'icon-pencil',
       children: [
         {
           name: 'Recipes',
-          url: '/extras/recipes',
+          url: '/recipes',
           icon: 'icon-wrench',
         },
         {
           name: 'NiFi Templates',
-          url: '/extras/nifi',
+          url: '/nifi-templates',
           icon: 'icon-note',
         },
         {
           name: 'Zeppelin Notes',
-          url: '/extras/zepellin',
+          url: '/zepellin-notes',
           icon: 'icon-notebook',
         },
         {
           name: 'SQL Scripts',
-          url: '/extras/sql',
+          url: '/sql-scripts',
           icon: 'icon-puzzle',
         },
       ],
     },
     {
       name: 'Manage',
-      url: '/manage',
       icon: 'icon-settings',
       children: [
         
         {
           name: 'Credentials',
-          url: '/manage/credentials',
+          url: '/credentials',
           icon: 'icon-lock',
         },
         {
           name: 'Users',
-          url: '/manage/users',
+          url: '/users',
           icon: 'icon-people',
         }
       ],

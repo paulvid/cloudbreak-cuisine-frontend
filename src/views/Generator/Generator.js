@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Confirmation from './Confirmation';
-import Success from './Success';
 import WelcomeScreen from './WelcomeScreen';
 import ClusterType from './ClusterType';
 import Services from './Services';
